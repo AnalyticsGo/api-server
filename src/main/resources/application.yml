@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/analyticsgo-dev
+    username: analyticsgo
+    password: analyticsgo123$
+    driver-class-name: org.postgresql.Driver
