@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = "1.4.0.RELEASE"
+		springBootVersion = "1.4.1.RELEASE"
 	}
 	repositories {
     jcenter()
@@ -47,6 +47,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-cache:${springBootVersion}")
   compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
   compile("org.projectlombok:lombok:1.+")
+  compile("org.apache.commons:commons-lang3:3.+")
 	runtime("org.postgresql:postgresql:9.4.+")
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }

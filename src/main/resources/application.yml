@@ -1,6 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/analyticsgo-dev
-    username: analyticsgo
-    password: analyticsgo123$
+    url: jdbc:postgresql://localhost:5432/ango-dev
+    username: agpostgres
+    password: Zxcv123$
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
