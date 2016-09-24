@@ -5,7 +5,6 @@ import com.analyticsgo.model.User;
 import com.analyticsgo.repo.ReadTokenRepo;
 import com.analyticsgo.repo.UserRepo;
 import com.analyticsgo.util.TokenGenerator;
-import lombok.extern.java.Log;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Log
 public class ApiServerApplicationTest {
 
   @Autowired
