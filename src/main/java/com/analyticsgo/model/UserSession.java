@@ -5,20 +5,23 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class UserSession extends BaseToken {
 
-  @NotNull
+  private static final long TIMEOUT = 7 * 24 * 60 * 60 * 1000L;
+
   @Setter
   @Getter
   private String ip;
 
-  @NotNull
   @Column(columnDefinition = "text")
   @Setter
   @Getter
   private String userAgent;
+
+  public boolean isExpired() {
+    return System.currentTimeMillis() - createdTime.getTime() > TIMEOUT;
+  }
 
 }

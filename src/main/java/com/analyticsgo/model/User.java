@@ -1,5 +1,6 @@
 package com.analyticsgo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "aguser")
+@Table(name = "app_user")
 @ToString(of = "username")
 public class User extends BaseEntity {
 
@@ -21,8 +22,16 @@ public class User extends BaseEntity {
   private String username;
 
   @NotNull
+  @JsonIgnore
   @Setter
   @Getter
   private String passwordHash;
+
+  @Setter
+  public Boolean admin;
+
+  public boolean isAdmin() {
+    return Boolean.TRUE.equals(admin);
+  }
 
 }

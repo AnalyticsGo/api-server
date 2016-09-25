@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @ToString(of = "name")
-public class ReadToken extends BaseToken {
+public class ApiKey extends BaseToken {
 
   @NotNull
   @Setter
@@ -19,7 +19,7 @@ public class ReadToken extends BaseToken {
   @Setter
   public Boolean disabled;
 
-  public boolean idDisabled() {
+  public boolean isDisabled() {
     return Boolean.TRUE.equals(disabled);
   }
 

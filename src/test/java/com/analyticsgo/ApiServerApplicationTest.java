@@ -1,46 +1,40 @@
 package com.analyticsgo;
 
-import com.analyticsgo.model.ReadToken;
 import com.analyticsgo.model.User;
-import com.analyticsgo.repo.ReadTokenRepo;
-import com.analyticsgo.repo.UserRepo;
-import com.analyticsgo.util.TokenGenerator;
+import com.analyticsgo.service.ApiKeyService;
+import com.analyticsgo.service.UserService;
+import com.analyticsgo.service.UserSessionService;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApiServerApplicationTest {
 
-  @Autowired
-  private UserRepo userRepo;
+  private final UserService userService;
+
+  private final ApiKeyService apiKeyService;
+
+  private final UserSessionService userSessionService;
 
   @Autowired
-  private ReadTokenRepo readTokenRepo;
-
-  @Autowired
-  private TokenGenerator tokenGenerator;
-
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+  public ApiServerApplicationTest(UserService userService, ApiKeyService apiKeyService,
+      UserSessionService userSessionService) {
+    this.userService = userService;
+    this.apiKeyService = apiKeyService;
+    this.userSessionService = userSessionService;
+  }
 
   @Test
   @Ignore
-  public void setupTestData() {
-    User user = new User();
-    user.setUsername("agdemo");
-    user.setPasswordHash(passwordEncoder.encode("Zxcv123$"));
-    userRepo.save(user);
-    ReadToken readToken = new ReadToken();
-    readToken.setId(tokenGenerator.createToken());
-    readToken.setUser(user);
-    readToken.setName("First read token");
-    readTokenRepo.save(readToken);
+  public void setUpTestData() {
+    User user = userService.create("userdemo", "Zxcv123$", false);
+    apiKeyService.create(user, "First API key");
+    userSessionService.create(user, null, null);
   }
 
 }
