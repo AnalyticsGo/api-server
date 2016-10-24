@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApiKeyService {
 
   private final ApiKeyRepo apiKeyRepo;
-
   private final TokenGenerator tokenGenerator;
 
   @Autowired

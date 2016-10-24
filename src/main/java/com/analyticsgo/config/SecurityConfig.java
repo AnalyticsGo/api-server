@@ -17,9 +17,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final ApiUserDetailsService apiUserDetailsService;
-
   private final ApiKeyService apiKeyService;
-
   private final UserSessionService userSessionService;
 
   @Autowired

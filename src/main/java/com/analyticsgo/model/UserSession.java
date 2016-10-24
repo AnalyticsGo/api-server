@@ -21,7 +21,7 @@ public class UserSession extends BaseToken {
   private String userAgent;
 
   public boolean isExpired() {
-    return System.currentTimeMillis() - createdTime.getTime() > TIMEOUT;
+    return System.currentTimeMillis() - getCreatedTime().getTime() > TIMEOUT;
   }
 
 }

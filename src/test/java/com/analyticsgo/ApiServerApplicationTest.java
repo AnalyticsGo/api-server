@@ -15,19 +15,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ApiServerApplicationTest {
 
-  private final UserService userService;
-
-  private final ApiKeyService apiKeyService;
-
-  private final UserSessionService userSessionService;
+  @Autowired
+  private UserService userService;
 
   @Autowired
-  public ApiServerApplicationTest(UserService userService, ApiKeyService apiKeyService,
-      UserSessionService userSessionService) {
-    this.userService = userService;
-    this.apiKeyService = apiKeyService;
-    this.userSessionService = userSessionService;
-  }
+  private ApiKeyService apiKeyService;
+
+  @Autowired
+  private UserSessionService userSessionService;
 
   @Test
   @Ignore

@@ -15,20 +15,20 @@ public class BaseToken {
   @Id
   @Setter
   @Getter
-  public String id;
+  private String id;
 
   @NotNull
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @Setter
   @Getter
-  public User user;
+  private User user;
 
   @NotNull
   @Column(columnDefinition = "timestamp with time zone")
   @Temporal(TemporalType.TIMESTAMP)
   @Setter
   @Getter
-  public Date createdTime;
+  private Date createdTime;
 
   @PrePersist
   protected void onCreate() {

@@ -14,10 +14,10 @@ public class ApiKey extends BaseToken {
   @NotNull
   @Setter
   @Getter
-  public String name;
+  private String name;
 
   @Setter
-  public Boolean disabled;
+  private Boolean disabled;
 
   public boolean isDisabled() {
     return Boolean.TRUE.equals(disabled);

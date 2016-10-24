@@ -23,7 +23,7 @@ public class BaseEntity {
   @Temporal(TemporalType.TIMESTAMP)
   @Setter
   @Getter
-  public Date createdTime;
+  private Date createdTime;
 
   @PrePersist
   protected void onCreate() {

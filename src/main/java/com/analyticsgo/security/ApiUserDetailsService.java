@@ -24,8 +24,7 @@ public class ApiUserDetailsService implements UserDetailsService {
     if (user == null) {
       throw new UsernameNotFoundException(String.format("Username [%s] not found", username));
     }
-    return new org.springframework.security.core.userdetails.User(user.getUsername(),
-        user.getPasswordHash(), UserRole.createAuthorities(user, false));
+    return new ApiUserDetails(user, AuthMethod.BASIC_AUTH);
   }
 
 }

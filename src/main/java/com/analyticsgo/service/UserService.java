@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
   private final UserRepo userRepo;
-
   private final PasswordEncoder passwordEncoder;
 
   @Autowired

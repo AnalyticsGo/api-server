@@ -1,12 +1,9 @@
 package com.analyticsgo.security;
 
 import com.analyticsgo.model.ApiKey;
-import com.analyticsgo.model.User;
 import com.analyticsgo.service.ApiKeyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -39,14 +36,8 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
     if (apiKey == null || apiKey.isDisabled()) {
       throw new BadCredentialsException(String.format("Invalid api key [%s]", apiKeyId));
     }
-    User user = apiKey.getUser();
-    org.springframework.security.core.userdetails.User principal =
-        new org.springframework.security.core.userdetails.User(user.getUsername(),
-            user.getPasswordHash(), UserRole.createAuthorities(user, true));
-    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(principal,
-        principal.getPassword(), principal.getAuthorities());
-    auth.eraseCredentials();
-    SecurityContextHolder.getContext().setAuthentication(auth);
+    ApiUserDetails userDetails = new ApiUserDetails(apiKey.getUser(), AuthMethod.API_KEY);
+    SecurityContextHolder.getContext().setAuthentication(userDetails.createAuthentication());
     filterChain.doFilter(request, response);
   }
 

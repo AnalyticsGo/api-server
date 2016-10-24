@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserSessionService {
 
   private final UserSessionRepo userSessionRepo;
-
   private final TokenGenerator tokenGenerator;
 
   @Autowired

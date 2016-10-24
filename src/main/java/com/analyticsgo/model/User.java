@@ -28,7 +28,7 @@ public class User extends BaseEntity {
   private String passwordHash;
 
   @Setter
-  public Boolean admin;
+  private Boolean admin;
 
   public boolean isAdmin() {
     return Boolean.TRUE.equals(admin);

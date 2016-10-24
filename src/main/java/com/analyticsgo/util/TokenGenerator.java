@@ -16,10 +16,6 @@ public class TokenGenerator {
   };
 
   public String createToken() {
-    try {
-      Thread.sleep(10);
-    } catch (InterruptedException e) {
-    }
     return StringUtils.leftPad(Long.toString(System.currentTimeMillis(), 32), 10, "0")
         + RandomStringUtils.random(22, BASE64_URL_CHARS);
   }
