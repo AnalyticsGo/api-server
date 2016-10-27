@@ -5,7 +5,6 @@ import com.analyticsgo.security.ApiUserDetailsService;
 import com.analyticsgo.security.SessionIdAuthFilter;
 import com.analyticsgo.service.ApiKeyService;
 import com.analyticsgo.service.UserSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final ApiKeyService apiKeyService;
   private final UserSessionService userSessionService;
 
-  @Autowired
   public SecurityConfig(ApiUserDetailsService apiUserDetailsService, ApiKeyService apiKeyService,
       UserSessionService userSessionService) {
     this.apiUserDetailsService = apiUserDetailsService;

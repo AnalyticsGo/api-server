@@ -3,14 +3,14 @@ package com.analyticsgo.model.json;
 import lombok.Getter;
 import lombok.Setter;
 
-public class TableColumn {
+public class SessionInfo {
 
   @Setter
   @Getter
-  private String id;
+  private String ip;
 
   @Setter
   @Getter
-  private String type;
+  private String userAgent;
 
 }

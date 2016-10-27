@@ -2,6 +2,7 @@ package com.analyticsgo.model;
 
 import com.analyticsgo.model.json.JsonConverter;
 import com.analyticsgo.model.json.TableColumn;
+import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -36,6 +37,12 @@ public class DataTable extends BaseEntity {
   private List<TableColumn> columns;
 
   public static class TableColumnsConverter extends JsonConverter<List<TableColumn>> {
+
+    @Override
+    protected TypeReference<List<TableColumn>> createTypeRef() {
+      return new TypeReference<List<TableColumn>>() {};
+    }
+
   }
 
 }

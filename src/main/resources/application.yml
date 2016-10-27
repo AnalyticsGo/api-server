@@ -2,7 +2,7 @@ server:
   port: 7000
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ango-dev
+    url: jdbc:postgresql://localhost:5432/ango_dev
     username: agpostgres
     password: Zxcv123$
     driver-class-name: org.postgresql.Driver
@@ -10,6 +10,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  jackson:
-    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
-    default-property-inclusion: non_null

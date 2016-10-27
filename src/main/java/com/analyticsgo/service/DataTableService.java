@@ -4,7 +4,6 @@ import com.analyticsgo.model.DataTable;
 import com.analyticsgo.model.User;
 import com.analyticsgo.model.json.TableColumn;
 import com.analyticsgo.repo.DataTableRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ public class DataTableService {
 
   private final DataTableRepo dataTableRepo;
 
-  @Autowired
   public DataTableService(DataTableRepo dataTableRepo) {
     this.dataTableRepo = dataTableRepo;
   }

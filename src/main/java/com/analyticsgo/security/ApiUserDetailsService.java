@@ -2,7 +2,6 @@ package com.analyticsgo.security;
 
 import com.analyticsgo.model.User;
 import com.analyticsgo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +12,6 @@ public class ApiUserDetailsService implements UserDetailsService {
 
   private final UserService userService;
 
-  @Autowired
   public ApiUserDetailsService(UserService userService) {
     this.userService = userService;
   }

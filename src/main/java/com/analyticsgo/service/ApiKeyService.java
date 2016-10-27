@@ -4,7 +4,6 @@ import com.analyticsgo.model.ApiKey;
 import com.analyticsgo.model.User;
 import com.analyticsgo.repo.ApiKeyRepo;
 import com.analyticsgo.util.TokenGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +13,6 @@ public class ApiKeyService {
   private final ApiKeyRepo apiKeyRepo;
   private final TokenGenerator tokenGenerator;
 
-  @Autowired
   public ApiKeyService(ApiKeyRepo apiKeyRepo, TokenGenerator tokenGenerator) {
     this.apiKeyRepo = apiKeyRepo;
     this.tokenGenerator = tokenGenerator;
