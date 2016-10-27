@@ -1,6 +1,0 @@
-# For integration tests
-spring:
-  datasource:
-    url: jdbc:hsqldb:mem:ango_test;sql.syntax_pgs=true
-    username: sa
-    driver-class-name: org.hsqldb.jdbcDriver

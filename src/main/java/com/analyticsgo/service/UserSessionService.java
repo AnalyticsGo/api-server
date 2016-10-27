@@ -4,7 +4,7 @@ import com.analyticsgo.model.User;
 import com.analyticsgo.model.UserSession;
 import com.analyticsgo.model.json.SessionInfo;
 import com.analyticsgo.repo.UserSessionRepo;
-import com.analyticsgo.util.TokenGenerator;
+import com.analyticsgo.util.TokenUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserSessionService {
 
   private final UserSessionRepo userSessionRepo;
-  private final TokenGenerator tokenGenerator;
+  private final TokenUtils tokenUtils;
 
-  public UserSessionService(UserSessionRepo userSessionRepo, TokenGenerator tokenGenerator) {
+  public UserSessionService(UserSessionRepo userSessionRepo, TokenUtils tokenUtils) {
     this.userSessionRepo = userSessionRepo;
-    this.tokenGenerator = tokenGenerator;
+    this.tokenUtils = tokenUtils;
   }
 
   @Transactional(readOnly = true)
@@ -27,7 +27,7 @@ public class UserSessionService {
   @Transactional
   public UserSession create(User user, String ip, String userAgent) {
     UserSession userSession = new UserSession();
-    userSession.setId(tokenGenerator.createToken());
+    userSession.setId(tokenUtils.createToken());
     userSession.setUser(user);
     SessionInfo info = new SessionInfo();
     info.setIp(ip);

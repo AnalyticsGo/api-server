@@ -99,7 +99,8 @@ public class JsonUtilsTest extends UnitTest {
 
   @Test
   public void testJsonToMap() {
-    TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {};
+    TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+    };
     Map<String, Object> map = jsonUtils.fromJson("{\"a\":1,\"b\":2}", typeRef);
     assertThat(map.size(), is(2));
     assertThat(map, hasEntry("a", 1));
