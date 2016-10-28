@@ -18,7 +18,7 @@ public class BeanConfigTest extends UnitTest {
   public void setUp() {
     BeanConfig beanConfig = new BeanConfig();
     passwordEncoder = beanConfig.passwordEncoder();
-    // objectMapper will be tested JsonUtilsTest
+    // beanConfig.objectMapper() will be tested in JsonUtilsTest
   }
 
   @Test

@@ -7,15 +7,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @ToString(of = "name")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"owner_id", "name"}))
 public class DataTable extends BaseEntity {
 
   @NotNull

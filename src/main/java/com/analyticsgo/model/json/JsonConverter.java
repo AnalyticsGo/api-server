@@ -16,17 +16,21 @@ public abstract class JsonConverter<T> implements AttributeConverter<T, String> 
 
   private TypeReference<T> typeRef;
 
-  private ObjectMapper objectMapper = createObjectMapper();
-
   protected abstract TypeReference<T> createTypeRef();
 
-  public static ObjectMapper createObjectMapper() {
+  private static final ObjectMapper objectMapper = createObjectMapper();
+
+  private static ObjectMapper createObjectMapper() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
     objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+    return objectMapper;
+  }
+
+  public static ObjectMapper getObjectMapper() {
     return objectMapper;
   }
 

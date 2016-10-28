@@ -15,8 +15,9 @@ public class TokenUtilsTest extends UnitTest {
 
   private static final int TEST_SIZE = 100;
 
+  private TokenUtils tokenUtils = new TokenUtils();
+
   private List<String> createTokens() {
-    TokenUtils tokenUtils = new TokenUtils();
     List<String> tokens = new ArrayList<>();
     for (int i = 0; i < TEST_SIZE; ++i) {
       tokens.add(tokenUtils.createToken());
@@ -40,7 +41,6 @@ public class TokenUtilsTest extends UnitTest {
 
   @Test
   public void testTokenShouldRelateToTimeOrder() throws InterruptedException {
-    TokenUtils tokenUtils = new TokenUtils();
     String token1 = tokenUtils.createToken();
     Thread.sleep(5);
     String token2 = tokenUtils.createToken();

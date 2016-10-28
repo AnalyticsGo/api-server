@@ -17,7 +17,7 @@ public class BeanConfig {
 
   @Bean
   public ObjectMapper objectMapper() {
-    return JsonConverter.createObjectMapper();
+    return JsonConverter.getObjectMapper();
   }
 
 }
