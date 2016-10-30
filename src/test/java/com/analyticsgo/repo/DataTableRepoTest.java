@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.*;
 public class DataTableRepoTest extends RepoTest {
 
   private static final String TABLE_NAME = "TABLE_NAME";
+  private static final String TABLE_NEW_NAME = "TABLE_NEW_NAME";
 
   @Autowired
   private DataTableRepo dataTableRepo;
@@ -44,7 +45,10 @@ public class DataTableRepoTest extends RepoTest {
     TableColumn salesColumn = new TableColumn();
     salesColumn.setId("sales");
     salesColumn.setType("number");
-    table.setColumns(Arrays.asList(dateColumn, salesColumn));
+    List<TableColumn> columns = new ArrayList<>();
+    columns.add(dateColumn);
+    columns.add(salesColumn);
+    table.setColumns(columns);
     return table;
   }
 
@@ -54,6 +58,17 @@ public class DataTableRepoTest extends RepoTest {
     thrown.expect(DataIntegrityViolationException.class);
     DataTable table = createDataTable(user);
     dataTableRepo.save(table);
+  }
+
+  @Test
+  public void testColumnIdShouldBeUnique() {
+    DataTable table = dataTableRepo.findAll().iterator().next();
+    TableColumn dateColumn = new TableColumn();
+    dateColumn.setId("month");
+    dateColumn.setType("date");
+    table.getColumns().add(dateColumn);
+    thrown.expect(InvalidDataAccessApiUsageException.class);
+    dataTableRepo.findAll();
   }
 
   @Test
@@ -70,6 +85,22 @@ public class DataTableRepoTest extends RepoTest {
     assertThat(columns.get(0).getType(), is("date"));
     assertThat(columns.get(1).getId(), is("sales"));
     assertThat(columns.get(1).getType(), is("number"));
+  }
+
+  @Test
+  public void testDataTableUpdate() {
+    DataTable table = dataTableRepo.findAll().iterator().next();
+    table.setName(TABLE_NEW_NAME);
+    TableColumn productColumn = new TableColumn();
+    productColumn.setId("product");
+    productColumn.setType("text");
+    table.getColumns().add(productColumn);
+    table = dataTableRepo.findAll().iterator().next();
+    assertThat(table.getName(), is(TABLE_NEW_NAME));
+    List<TableColumn> columns = table.getColumns();
+    assertThat(columns, hasSize(3));
+    assertThat(columns.get(2).getId(), is("product"));
+    assertThat(columns.get(2).getType(), is("text"));
   }
 
   @Test
