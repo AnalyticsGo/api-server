@@ -15,7 +15,6 @@ import java.util.Set;
 
 @Entity
 @ToString(of = "name")
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"owner_id", "name"}))
 public class DataTable extends BaseEntity {
 
   @NotNull

@@ -51,7 +51,7 @@ public class DataTableRepoTest extends RepoTest {
     table.setColumns(columns);
     return table;
   }
-   // ignore
+
   @Test
   public void testNameAndOwnerShouldBeUnique() {
     User user = userRepo.findByUsername(UserRepoTest.USERNAME);
